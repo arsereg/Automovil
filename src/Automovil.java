@@ -197,15 +197,15 @@ public class Automovil {
     }
     
     public String toString(){
-        String model = "Modelo: " + modelo;
-        String plate = "Placa: " + placa;
-        String serialNum = "Serie: " +serie;
-        String brand = "Marca:" + marca;
-        String on = "Encendido: " + encendido;
-        String open = "Abierto: " + abierto;
-        String driving = "Arrancado:" + arrancado;
+        String model = "Modelo: " + getModelo();
+        String plate = "Placa: " + getPlaca();
+        String serialNum = "Serie: " + getSerie();
+        String brand = "Marca:" + getMarca();
+        String on = "Encendido: " + isEncendido();
+        String open = "Abierto: " + isAbierto();
+        String driving = "Arrancado:" + isArrancado();
         String pass = "Contrasenia: " + contrasenia;
-        String speed = "Velocidad: " + velocidad;
+        String speed = "Velocidad: " + getVelocidad();
         String resul = model + "\n" + plate + "\n" + serialNum + "\n" + brand + "\n" + on + "\n" + open + "\n" + driving + "\n" + pass + "\n" + speed;
         return resul;
     }
