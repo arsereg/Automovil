@@ -5,7 +5,7 @@ import java.util.*;
 public class IUAutomovil {
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
     static PrintStream out = System.out;
-    static ArrayList<Automovil> autos = new ArrayList<Automovil>();
+    static ArrayList<Automovil> autos = new ArrayList<>();
     static int autoSelect = 0;
     public static void main(String[] args)throws java.io.IOException{
         autos.add(new Automovil());
