@@ -1,13 +1,14 @@
 
 import java.io.*;
+import java.util.*;
 
 public class IUAutomovil {
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
     static PrintStream out = System.out;
-    static Automovil[] autos = new Automovil[1];
+    static ArrayList<Automovil> autos = new ArrayList<Automovil>();
     static int autoSelect = 0;
     public static void main(String[] args)throws java.io.IOException{
-        autos[0] = new Automovil();
+        autos.add(new Automovil());
         int accion = -1;
         do{
             mostrarMenu();
@@ -62,7 +63,7 @@ public class IUAutomovil {
             }
         }else{
             if(paccion > 0 && paccion <= 16){
-                if(autos[autoSelect].isAbierto()){
+                if(autos.get(autoSelect).isAbierto()){
                     switch(paccion){
                     case 2:
                         intentarEncender();
@@ -122,13 +123,13 @@ public class IUAutomovil {
     }
     
     static void intentarAbrir()throws java.io.IOException{
-        if(autos[autoSelect].isAbierto()){
+        if(autos.get(autoSelect).isAbierto()){
             out.println("El automovil ya está abierto");
         }else{
             out.println("");
             out.print("Digite la contrasenia para abrir el carro: ");
             String pass = in.readLine();
-            boolean seAbrio = autos[autoSelect].abrir(pass);
+            boolean seAbrio = autos.get(autoSelect).abrir(pass);
             if(seAbrio){
                 out.println();
                 out.println("El automovil se ha abierto. Puede comenzar a conducir");
@@ -142,8 +143,8 @@ public class IUAutomovil {
     }
     
     static void intentarArrancar(){
-        if(!autos[autoSelect].isArrancado()){
-            autos[autoSelect].arrancar();
+        if(!autos.get(autoSelect).isArrancado()){
+            autos.get(autoSelect).arrancar();
             out.println();
             out.println("Automovil arrancado");
             out.println();
@@ -153,8 +154,8 @@ public class IUAutomovil {
     }
     
     static void intentarEncender(){
-        if(!autos[autoSelect].isEncendido()){
-            autos[autoSelect].encender();
+        if(!autos.get(autoSelect).isEncendido()){
+            autos.get(autoSelect).encender();
             out.println();
             out.println("Automovil encendido");
         }else{
@@ -163,10 +164,10 @@ public class IUAutomovil {
     }
     
     static void intentarAcelerar(){
-        if(autos[autoSelect].isArrancado()){
-            autos[autoSelect].acelerar();
+        if(autos.get(autoSelect).isArrancado()){
+            autos.get(autoSelect).acelerar();
             out.println();
-            out.println("Acelerando. Velocidad actual: " + autos[autoSelect].getVelocidad());
+            out.println("Acelerando. Velocidad actual: " + autos.get(autoSelect).getVelocidad());
             out.println();
         }else{
             out.println();
@@ -175,15 +176,15 @@ public class IUAutomovil {
     }
     
     static void intentarFrenar(){
-        autos[autoSelect].frenar();
+        autos.get(autoSelect).frenar();
         out.println();
-        out.println("Frenando. Velocidad actual " + autos[autoSelect].getVelocidad());
+        out.println("Frenando. Velocidad actual " + autos.get(autoSelect).getVelocidad());
         out.println();
     }
     
     static void intentarApagar(){
-        if(autos[autoSelect].isEncendido()){
-           autos[autoSelect].apagar();
+        if(autos.get(autoSelect).isEncendido()){
+           autos.get(autoSelect).apagar();
            out.println("");
            out.println("El automovil se ha apagado");
         }else{
@@ -192,14 +193,14 @@ public class IUAutomovil {
     }
     
     static void detenerse(){
-        autos[autoSelect].detener();
+        autos.get(autoSelect).detener();
         out.println();
         out.println("Auto Detenido");
         out.println();
     }
     
     static void cerrar(){
-        autos[autoSelect].cerrar();
+        autos.get(autoSelect).cerrar();
         out.println();
         out.println("El auto se ha detenido.");
         out.println("El auto se ha apagado");
@@ -209,7 +210,7 @@ public class IUAutomovil {
     
     static void verEstado(){
         out.println();
-        out.println(autos[autoSelect]);
+        out.println(autos.get(autoSelect));
         out.println();
     }
     
@@ -227,44 +228,44 @@ public class IUAutomovil {
         out.println();
         out.print("Escriba el modelo del automovil: ");
         String mod = in.readLine();
-        autos[autoSelect].setModelo(mod);
+        autos.get(autoSelect).setModelo(mod);
     }
     
     static void ingresarPlaca()throws java.io.IOException{
         out.println();
         out.print("Ingrese el numero de placa del automovil: ");
         String plate = in.readLine();
-        autos[autoSelect].setPlaca(plate);
+        autos.get(autoSelect).setPlaca(plate);
     }
     
     static void ingresarMarca()throws java.io.IOException{
         out.println();
         out.print("Ingrese la marca del automovil: ");
         String marca = in.readLine();
-        autos[autoSelect].setMarca(marca);
+        autos.get(autoSelect).setMarca(marca);
     }
     
     static void conocerModelo(){
-        String modelo = autos[autoSelect].getModelo();
+        String modelo = autos.get(autoSelect).getModelo();
         String msj = "Modelo del automovil: " + modelo;
         out.println();
         out.println(msj);
     }
     static void conocerPlaca(){
-        String plate = autos[autoSelect].getModelo();
+        String plate = autos.get(autoSelect).getModelo();
         String msj = "Placa del automovil: " + plate;
         out.println();
         out.println(msj);
     
     }
     static void conocerMarca(){
-        String marca = autos[autoSelect].getModelo();
+        String marca = autos.get(autoSelect).getModelo();
         String msj = "Marca: " + marca;
         out.println();
         out.println(msj);
     }
     static void conocerNumSerie(){
-        String numSerie = autos[autoSelect].getSerie();
+        String numSerie = autos.get(autoSelect).getSerie();
         String msj = "Numero de serie: " + numSerie;
         out.println();
         out.println(msj);
