@@ -143,13 +143,17 @@ public class IUAutomovil {
     }
     
     static void intentarArrancar(){
-        if(!autos.get(autoSelect).isArrancado()){
+        if(autos.get(autoSelect).isEncendido()){
+            if(!autos.get(autoSelect).isArrancado()){
             autos.get(autoSelect).arrancar();
             out.println();
             out.println("Automovil arrancado");
             out.println();
+            }else{
+                out.println("El automovil ya está arrancado");
+            }
         }else{
-            out.println("El automovil ya está arrancado");
+            out.println("El automovil debe estar encendido para realizar esta opcion");
         }
     }
     
@@ -176,10 +180,18 @@ public class IUAutomovil {
     }
     
     static void intentarFrenar(){
-        autos.get(autoSelect).frenar();
-        out.println();
-        out.println("Frenando. Velocidad actual " + autos.get(autoSelect).getVelocidad());
-        out.println();
+        if(autos.get(autoSelect).isEncendido()){
+            if(autos.get(autoSelect).isArrancado()){
+                autos.get(autoSelect).frenar();
+                out.println();
+                out.println("Frenando. Velocidad actual " + autos.get(autoSelect).getVelocidad());
+                out.println();
+            }else{
+                out.println("El automovil no está en movimiento.");
+            }
+        }else{
+            out.println("El automovil debe estar encendido para ejecutar esta opcion");
+        }
     }
     
     static void intentarApagar(){
